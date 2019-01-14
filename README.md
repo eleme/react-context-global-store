@@ -1,1 +1,1 @@
-# react-context-kv-store
+# react-context-global-store
