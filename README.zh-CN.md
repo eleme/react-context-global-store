@@ -4,19 +4,19 @@
 [![NPM size](https://img.shields.io/bundlephobia/min/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
 [![NPM downloads](https://img.shields.io/npm/dt/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
 
-## INTRODUCTION
+## 简介
 
 react-context-global-store是一个基于React Context API(**需要React 16及以上版本**)构建的全局状态管理库。  
 使用它你可以像使用redux一样构建全局状态仓库，并在你的内部业务组件中通过简单的方式引用这些全局状态。
 它的体积非常小(打包后仅有不到300行)，且拥有简洁的API。
 
-##  Installation
+## 安装
 
-```js
+```bash
 npm install react-context-global-store
 ```
 
-## Use It
+## 使用
 使用StoreProvider组件包装你的App，并使用createStore初始化你的store  
 *※第一级子store只能是对象，不能为数组等其它结构。你可以在第一级子store中使用其它数据结构*
 
@@ -29,20 +29,20 @@ import { createStore, StoreProvider } from 'react-context-global-store';
 import App from './app';
 
 const store = createStore({
-    counter: { // 第一级子store必须是对象
-        val: 0,
-        pepols: [{ // 第二级子store可以是数组等其它数据结构
-            name: 'Helen',
-            age: 30,
-        }],
-    }
+  counter: { // 第一级子store必须是对象
+    val: 0,
+    pepols: [{ // 第二级子store可以是数组等其它数据结构
+      name: 'Helen',
+      age: 30,
+    }],
+  }
 });
 
 ReactDOM.render(
-    <StoreProvider store={store}>
-        <App />
-    </StoreProvider>,
-    document.getElementById('root')
+  <StoreProvider store={store}>
+    <App />
+  </StoreProvider>,
+  document.getElementById('root')
 );
 ```
 然后使用connect方法将你的组件与store连接：
@@ -52,13 +52,13 @@ ReactDOM.render(
 import React from 'react';
 import { connect } from 'react-context-global-store';
 
-class App extends React.Component{
-    constructor(props) {
-        super(props)
-    }
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 }
 
-export default connect(App, ['counter'])
+export default connect(App, ['counter']);
 ```
 最后在组件内使用this.props.store获取定义好的context，并使用setStore更新你的context  
 *Tips: 就像setState一样，你可传入回调函数来获取更新后的context*
@@ -66,29 +66,29 @@ export default connect(App, ['counter'])
 // before
 
 add() {
-    const { val, pepols } = this.props.store.counter;
-    pepols.push({
-        name: 'john',
-        age: 23,
-    })
-    this.props.setStore({
-        counter: {
-            val: val + 1,
-            pepols,
-        }
-    }, () => {
-        console.log(this.props.store.counter.val, this.props.store.counter.pepols); // new context
-    });
+  const { val, pepols } = this.props.store.counter;
+  pepols.push({
+    name: 'john',
+    age: 23,
+  })
+  this.props.setStore({
+    counter: {
+      val: val + 1,
+      pepols,
+    }
+  }, () => {
+    console.log(this.props.store.counter.val, this.props.store.counter.pepols); // new context
+  });
 }
 
 render() {
-    const { counter } = this.props.store;
-    return (
-        <div>
-            {counter.val}
-            <button onClick={() => this.add()}>add</button>
-        </div>
-    )
+  const { counter } = this.props.store;
+  return (
+    <div>
+      {counter.val}
+      <button onClick={() => this.add()}>add</button>
+    </div>
+  )
 }
 
 // after
@@ -151,9 +151,9 @@ Example
 import { AdapterStore, createStore } from 'react-context-global-store';
 
 const store = createStore({
-    counter: new AdapterStore('localStorage', {
-        count: 0,
-    })
+  counter: new AdapterStore('localStorage', {
+    count: 0,
+  })
 });
 ```
 
@@ -170,20 +170,20 @@ Example
 import { injectAdapter, AdapterStore, createStore } from 'react-context-global-store';
 
 injectAdapter({
-    sessionStorage: {
-        get(key) {
-            return window.sessionStorage.getItem(key);
-        },
-        
-        set(key, val) {
-            window.sessionStorage.setItem(key, val);
-        },
-    }
+  sessionStorage: {
+    get(key) {
+      return window.sessionStorage.getItem(key);
+    },
+
+    set(key, val) {
+      window.sessionStorage.setItem(key, val);
+    },
+  }
 })
 
 const store = createStore({
-    caches: new AdapterStore('sessionStorage', {
-        count: 0,
-    })
+  caches: new AdapterStore('sessionStorage', {
+    count: 0,
+  })
 });
 ```
