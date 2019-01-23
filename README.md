@@ -12,7 +12,7 @@ The react-context-global-store is a global state management library built on the
 
 ##  Installation
 
-```js
+```bash
 npm install react-context-global-store
 ```
 
@@ -29,20 +29,20 @@ import { createStore, StoreProvider } from 'react-context-global-store';
 import App from './app';
 
 const store = createStore({
-    counter: { // The first level of the sub-store must be an object
-        val: 0,
-        pepols: [{ // The second level substore can be an array or other data structure
-            name: 'Helen',
-            age: 30,
-        }],
-    }
+  counter: { // The first level of the sub-store must be an object
+    val: 0,
+    pepols: [{ // The second level substore can be an array or other data structure
+      name: 'Helen',
+      age: 30,
+    }],
+  }
 });
 
 ReactDOM.render(
-    <StoreProvider store={store}>
-        <App />
-    </StoreProvider>,
-    document.getElementById('root')
+  <StoreProvider store={store}>
+    <App />
+  </StoreProvider>,
+  document.getElementById('root')
 );
 ```
 Then use the connect method to connect your component to the store:
@@ -52,13 +52,11 @@ Then use the connect method to connect your component to the store:
 import React from 'react';
 import { connect } from 'react-context-global-store';
 
-class App extends React.Component{
-    constructor(props) {
-        super(props)
-    }
+class App extends React.Component {
+  
 }
 
-export default connect(App, ['counter'])
+export default connect(App, ['counter']);
 ```
 Finally use this.props.store inside the component to get the defined context and update your context with setStore  
 *Tips: Just like setState, you can pass in a callback function to get the updated context*
@@ -66,29 +64,29 @@ Finally use this.props.store inside the component to get the defined context and
 // before
 
 add() {
-    const { val, pepols } = this.props.store.counter;
-    pepols.push({
-        name: 'john',
-        age: 23,
-    })
-    this.props.setStore({
-        counter: {
-            val: val + 1,
-            pepols,
-        }
-    }, () => {
-        console.log(this.props.store.counter.val, this.props.store.counter.pepols); // new context
-    });
+  const { val, pepols } = this.props.store.counter;
+  pepols.push({
+    name: 'john',
+    age: 23,
+  })
+  this.props.setStore({
+    counter: {
+      val: val + 1,
+      pepols,
+    }
+  }, () => {
+    console.log(this.props.store.counter.val, this.props.store.counter.pepols); // new context
+  });
 }
 
 render() {
-    const { counter } = this.props.store;
-    return (
-        <div>
-            {counter.val}
-            <button onClick={() => this.add()}>add</button>
-        </div>
-    )
+  const { counter } = this.props.store;
+  return (
+    <div>
+      {counter.val}
+      <button onClick={() => this.add()}>add</button>
+    </div>
+  )
 }
 
 // after
@@ -148,9 +146,9 @@ Example
 import { AdapterStore, createStore } from 'react-context-global-store';
 
 const store = createStore({
-    counter: new AdapterStore('localStorage', {
-        count: 0,
-    })
+  counter: new AdapterStore('localStorage', {
+    count: 0,
+  })
 });
 ```
 
@@ -166,20 +164,20 @@ Example
 import { injectAdapter, AdapterStore, createStore } from 'react-context-global-store';
 
 injectAdapter({
-    sessionStorage: {
-        get(key) {
-            return window.sessionStorage.getItem(key);
-        },
-        
-        set(key, val) {
-            window.sessionStorage.setItem(key, val);
-        },
-    }
-})
+  sessionStorage: {
+    get(key) {
+      return window.sessionStorage.getItem(key);
+    },
+
+    set(key, val) {
+      window.sessionStorage.setItem(key, val);
+    },
+  }
+});
 
 const store = createStore({
-    caches: new AdapterStore('sessionStorage', {
-        count: 0,
-    })
+  caches: new AdapterStore('sessionStorage', {
+    count: 0,
+  })
 });
 ```
