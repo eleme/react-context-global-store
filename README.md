@@ -1,11 +1,12 @@
 # react-context-global-store
 
-[中文版](https://github.com/eleme/react-context-global-store/blob/master/CNREADME.md)  
 [![NPM version](https://img.shields.io/npm/v/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
 [![NPM size](https://img.shields.io/bundlephobia/min/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
 [![NPM downloads](https://img.shields.io/npm/dt/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
 
 ## INTRODUCTION
+
+[中文版介绍](https://github.com/eleme/react-context-global-store/blob/master/README.zh-CN.md)  
 
 The react-context-global-store is a global state management library built on the React Context API (**React version 16 or above**).Using it you can build a global state repository just like redux and reference these global states in a simple way in your internal business components.It's very small (less than 300 lines after packaging) and has a clean API.
 
