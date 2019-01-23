@@ -1,13 +1,14 @@
 # react-context-global-store
 
-[中文版](https://github.com/eleme/react-context-global-store/blob/master/CNREADME.md)  
 [![NPM version](https://img.shields.io/npm/v/brick.js.svg)](https://www.npmjs.org/package/react-context-global-store.js)
 [![NPM size](https://img.shields.io/bundlephobia/min/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store.js)
 [![NPM downloads](https://img.shields.io/npm/dt/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store.js)
 
 ## INTRODUCTION
 
-The react-context-global-store is a global state management library built on the React Context API (**React version 16 or above**).Using it you can build a global state repository just like redux and reference these global states in a simple way in your internal business components.It's very small (less than 300 lines after packaging) and has a clean API.
+react-context-global-store是一个基于React Context API(**需要React 16及以上版本**)构建的全局状态管理库。  
+使用它你可以像使用redux一样构建全局状态仓库，并在你的内部业务组件中通过简单的方式引用这些全局状态。
+它的体积非常小(打包后仅有不到300行)，且拥有简洁的API。
 
 ##  Installation
 
@@ -16,8 +17,8 @@ npm install react-context-global-store
 ```
 
 ## Use It
-Wrap your app with the Provider component and initialize your store with createStore:  
-*※The first level substore can only be an object, and cannot be an array or other structure. You can use other data structures in the first level substore*
+使用StoreProvider组件包装你的App，并使用createStore初始化你的store  
+*※第一级子store只能是对象，不能为数组等其它结构。你可以在第一级子store中使用其它数据结构*
 
 ```js
 // index.js
@@ -28,9 +29,9 @@ import { createStore, StoreProvider } from 'react-context-global-store';
 import App from './app';
 
 const store = createStore({
-    counter: { // The first level of the sub-store must be an object
+    counter: { // 第一级子store必须是对象
         val: 0,
-        pepols: [{ // The second level substore can be an array or other data structure
+        pepols: [{ // 第二级子store可以是数组等其它数据结构
             name: 'Helen',
             age: 30,
         }],
@@ -44,7 +45,7 @@ ReactDOM.render(
     document.getElementById('root')
 );
 ```
-Then use the connect method to connect your component to the store:
+然后使用connect方法将你的组件与store连接：
 ```js
 // app.js
 
@@ -59,8 +60,8 @@ class App extends React.Component{
 
 export default connect(App, ['counter'])
 ```
-Finally use this.props.store inside the component to get the defined context and update your context with setStore  
-*Tips: Just like setState, you can pass in a callback function to get the updated context*
+最后在组件内使用this.props.store获取定义好的context，并使用setStore更新你的context  
+*Tips: 就像setState一样，你可传入回调函数来获取更新后的context*
 ```js
 // before
 
@@ -97,35 +98,35 @@ render() {
 
 **StoreProvider** *Component*
 
-Container component, you need to use this component to wrap your App component when creating an application.  
-It receives an initialized Store so that the child component uses the `connect` method to connect the component to the Store.
+容器组件，你需要在创建应用时，使用这个组件包裹你的App组件。  
+它接收一个初始化的Store，以便子组件使用`connect`方法连接组件与Store
 
 ## APIs
 
 **connect** *Function*
 
-Use this function to connect components to the Store
+使用此方法连接组件与Store
 
 Params
-  + **component** { ReactComponent } Subcomponents that need to be connected
-  + **stores** { Array } Store name set to be obtained
+  + **component** { ReactComponent } 需要连接的子组件
+  + **stores** { Array } 需要获取的Store名集合
 
 **createStore** *Function*
 
-Use this function to create a Store  
-*※The first level substore can only be an object, and cannot be an array or other structure. You can use other data structures in the first level substore*
+使用此方法创建Store  
+*※第一级子store只能是对象，不能为数组等其它结构。你可以在第一级子store中使用其它数据结构*
 
 Params
-  + **store** { Object } Store template, a normal object
+  + **store** { Object } store模板，一个普通对象
 
 **AdapterStore** *Class*
 
-Create an AdapterStore; it will be automatically stored in localized storage such as localStorage after the state updated.  
-You can use the injectAdapter function to customize the storage method, or use the localStorage (library comes with) storage.
+创建一个AdapterStore；它会在状态更新后，自动存储在localStorage等本地化存储中。  
+你可以使用injectAdapter方法自定义存储方式，或使用localStorage(库自带)存储。
 
 Params
-  + **adapter** { String } Adapter name, the library native support localStorage
-  + **values** { Object } Child Store
+  + **adapter** { String } adapter名，库原生支持localStorage
+  + **values** { Object } 子store
 
 Example
 ```js
@@ -140,10 +141,10 @@ const store = createStore({
 
 **injectAdapter** *Function*
 
-Custom adapter, if localStorage can't meet your needs, you can customize other storage methods.
+自定义adapter，如果localStorage无法满足你的需求，你可以自定义其它的存储方式。
 
 Params
-  + **customAdapter** { Object } Custom storage, custom storage must have a get method and a set method; you can also use it to rewrite localStorage to improve your system performance
+  + **customAdapter** { Object } 自定义的存储方式，自定义的存储方式必须有一个get方法和一个set方法；你也可以用它重写localStorage以提高你的系统性能
 
 Example
 ```js

@@ -1,0 +1,21 @@
+{
+  "name": "react-context-global-store",
+  "version": "1.0.4",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rollup -c --watch",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^6.26.3",
+    "rollup": "^1.0.1",
+    "rollup-plugin-babel": "^4.2.0",
+    "tslib": "^1.9.3"
+  },
+  "author": "",
+  "license": "ISC"
+}
