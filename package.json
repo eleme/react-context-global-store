@@ -1,12 +1,13 @@
 {
   "name": "react-context-global-store",
-  "version": "1.0.4",
-  "description": "",
+  "version": "1.0.6",
+  "description": "Global state library For React 16 Context Api",
+  "private": false,
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rollup -c --watch",
-    "build": "rollup -c"
+    "prepublish": "rollup -c"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -16,6 +17,17 @@
     "rollup-plugin-babel": "^4.2.0",
     "tslib": "^1.9.3"
   },
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "React",
+    "State",
+    "Context",
+    "global-state"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eleme/react-context-global-store.git"
+  },
+  "author": "ELEME Inc",
+  "homepage": "https://github.com/eleme/react-context-global-store",
+  "license": "MIT"
 }

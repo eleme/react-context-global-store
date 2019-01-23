@@ -1,9 +1,9 @@
 # react-context-global-store
 
 [中文版](https://github.com/eleme/react-context-global-store/blob/master/CNREADME.md)  
-[![NPM version](https://img.shields.io/npm/v/brick.js.svg)](https://www.npmjs.org/package/react-context-global-store.js)
-[![NPM size](https://img.shields.io/bundlephobia/min/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store.js)
-[![NPM downloads](https://img.shields.io/npm/dt/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store.js)
+[![NPM version](https://img.shields.io/npm/v/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
+[![NPM size](https://img.shields.io/bundlephobia/min/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
+[![NPM downloads](https://img.shields.io/npm/dt/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
 
 ## INTRODUCTION
 
@@ -93,6 +93,13 @@ render() {
 // after
 ```
 
+## Reserved Word
+React-context-global-store has some reserved words that you should not modify or use in your program, otherwise it will cause some unexpected errors.
+
+- this.props.store
+- this.props.setStore
+
+
 ## Components
 
 **StoreProvider** *Component*
@@ -102,7 +109,7 @@ It receives an initialized Store so that the child component uses the `connect` 
 
 ## APIs
 
-**connect** *Function*
+>**connect** *Function*
 
 Use this function to connect components to the Store
 
@@ -110,7 +117,15 @@ Params
   + **component** { ReactComponent } Subcomponents that need to be connected
   + **stores** { Array } Store name set to be obtained
 
-**createStore** *Function*
+>**setStore** *Function*
+
+Use this function to modify the data in the store
+
+Params
+  + **newState** { Object } New state, it will locally update some states like setState
+  + **callback** { Function } State updated callback function
+
+>**createStore** *Function*
 
 Use this function to create a Store  
 *※The first level substore can only be an object, and cannot be an array or other structure. You can use other data structures in the first level substore*
@@ -118,7 +133,7 @@ Use this function to create a Store
 Params
   + **store** { Object } Store template, a normal object
 
-**AdapterStore** *Class*
+>**AdapterStore** *Class*
 
 Create an AdapterStore; it will be automatically stored in localized storage such as localStorage after the state updated.  
 You can use the injectAdapter function to customize the storage method, or use the localStorage (library comes with) storage.
@@ -138,7 +153,7 @@ const store = createStore({
 });
 ```
 
-**injectAdapter** *Function*
+>**injectAdapter** *Function*
 
 Custom adapter, if localStorage can't meet your needs, you can customize other storage methods.
 

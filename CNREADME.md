@@ -1,8 +1,8 @@
 # react-context-global-store
 
-[![NPM version](https://img.shields.io/npm/v/brick.js.svg)](https://www.npmjs.org/package/react-context-global-store.js)
-[![NPM size](https://img.shields.io/bundlephobia/min/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store.js)
-[![NPM downloads](https://img.shields.io/npm/dt/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store.js)
+[![NPM version](https://img.shields.io/npm/v/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
+[![NPM size](https://img.shields.io/bundlephobia/min/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
+[![NPM downloads](https://img.shields.io/npm/dt/react-context-global-store.svg)](https://www.npmjs.org/package/react-context-global-store)
 
 ## INTRODUCTION
 
@@ -94,6 +94,13 @@ render() {
 // after
 ```
 
+## Reserved Word
+react-context-global-store有一些保留字，你不应该在你的程序中修改或占用它们，否则会导致一些意外的错误
+
+- this.props.store
+- this.props.setStore
+
+
 ## Components
 
 **StoreProvider** *Component*
@@ -103,7 +110,7 @@ render() {
 
 ## APIs
 
-**connect** *Function*
+>**connect** *Function*
 
 使用此方法连接组件与Store
 
@@ -111,7 +118,17 @@ Params
   + **component** { ReactComponent } 需要连接的子组件
   + **stores** { Array } 需要获取的Store名集合
 
-**createStore** *Function*
+
+>**setStore** *Function*
+
+使用此方法修改Store中的state
+
+Params
+  + **newState** { Object } 新的state，它会像setState一样局部更新某些state
+  + **callback** { Function } state更新后的回调
+
+
+>**createStore** *Function*
 
 使用此方法创建Store  
 *※第一级子store只能是对象，不能为数组等其它结构。你可以在第一级子store中使用其它数据结构*
@@ -119,7 +136,8 @@ Params
 Params
   + **store** { Object } store模板，一个普通对象
 
-**AdapterStore** *Class*
+
+>**AdapterStore** *Class*
 
 创建一个AdapterStore；它会在状态更新后，自动存储在localStorage等本地化存储中。  
 你可以使用injectAdapter方法自定义存储方式，或使用localStorage(库自带)存储。
@@ -139,7 +157,8 @@ const store = createStore({
 });
 ```
 
-**injectAdapter** *Function*
+
+>**injectAdapter** *Function*
 
 自定义adapter，如果localStorage无法满足你的需求，你可以自定义其它的存储方式。
 
