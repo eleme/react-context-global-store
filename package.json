@@ -12,10 +12,14 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-react": "^7.0.0",
+    "@types/node": "^8.0.34",
+    "@types/react": "^16.8.5",
     "babel-core": "^6.26.3",
     "rollup": "^1.0.1",
     "rollup-plugin-babel": "^4.2.0",
-    "tslib": "^1.9.3"
+    "rollup-plugin-typescript2": "^0.19.2",
+    "tslib": "^1.9.3",
+    "typescript": "^3.3.3"
   },
   "keywords": [
     "React",
@@ -29,5 +33,8 @@
   },
   "author": "ELEME Inc",
   "homepage": "https://github.com/eleme/react-context-global-store",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.8.2"
+  }
 }
